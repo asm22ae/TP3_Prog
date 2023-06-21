@@ -1,5 +1,5 @@
 const { validationResult } = require("express-validator");
-const bcryptjs = require("bcryptjs"); // Ajouter un point-virgule ici
+const bcryptjs = require("bcryptjs"); 
 const User = require("../models/User");
 
 exports.getUsers = async (req, res) => {
@@ -26,14 +26,14 @@ exports.getUserById = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
   try {
-    // récupère les informations envoyées au endpoint
+    // récupèration des informations envoyées 
     const { firstname, lastname, email, city, password } = req.body;
     // récupere l'id envoyé par paramettre
     const idUserParam = req.params.id;
-    // récupere l'id de l'utilisateur connecté 
+    // récupere l'id de l'utilisateur qui est connecté 
     const idUserConnecte = req.user.userId; // Utiliser _id au lieu de id
 
-    // réalise les validations
+    //validations
     if (idUserParam !== idUserConnecte) { // Inverser la condition
       throw Error('Vous n\'avez pas le droit de modifier cet utilisateur!');
     }

@@ -15,7 +15,6 @@ app.use((req, res, next) => {
    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
    next();
   });
-  
 
 const errorController = require('./controllers/errorController');
 
@@ -25,7 +24,6 @@ const categoriesRoutes = require('./routes/categoriesRoutes');
 const cartRoutes = require('./routes/cartRoutes');
 const authRoutes = require('./routes/authRoutes');
 const searchRoutes = require('./routes/searchRoutes');
-
 
 app.use(express.json()); 
 app.use(express.urlencoded({
