@@ -35,7 +35,7 @@ exports.updateUser = async (req, res) => {
 
     //validations
     if (idUserParam !== idUserConnecte) { // Inverser la condition
-      throw Error('Vous n\'avez pas le droit de modifier cet utilisateur!');
+      res.status(403).json({msg:'Vous n\'avez pas le droit de modifier cet utilisateur!'});
     }
     // mettre à jours les informations 
     const updateData = {}; // Créer un objet vide pour stocker les données à modifier
@@ -78,7 +78,7 @@ exports.deleteUser = async (req, res) => {
   const idUserConnecte = req.user.userId;
   try {
     if(idUserParam !== idUserConnecte) {
-      throw new Error("Vous n\'avez pas le droit de modifier cet utilisateur!")
+      res.status(403).json({msg:'Vous n\'avez pas le droit de supprimer cet utilisateur!'});
     }
     const user = await User.findById(idUserParam);
     if (!user) {
