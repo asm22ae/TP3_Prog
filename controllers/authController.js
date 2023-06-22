@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
+// Fonction d'inscription d'un nouvel utilisateur
 exports.signup = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -27,6 +28,7 @@ exports.signup = async (req, res) => {
   }
 };
 
+// Fonction de connexion d'un utilisateur existant
 exports.login = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

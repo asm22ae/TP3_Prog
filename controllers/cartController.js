@@ -1,7 +1,9 @@
+// Importer les modules nécessaires
 const { validationResult } = require("express-validator");
 const User = require("../models/User");
 const Product = require("../models/Product");
 
+// Récupérer le panier de l'utilisateur
 exports.getCart = async (req, res) => {
   try {
     const user = await User.findById(req.user.userId);
@@ -16,6 +18,7 @@ exports.getCart = async (req, res) => {
   }
 };
 
+// Ajouter un produit au panier de l'utilisateur
 exports.addProductToCart = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -43,6 +46,7 @@ exports.addProductToCart = async (req, res) => {
   }
 };
 
+// Retirer un produit du panier de l'utilisateur
 exports.removeProductFromCart = async (req, res) => {
   const productId = req.params.id;
 

@@ -2,6 +2,7 @@ const { validationResult } = require("express-validator");
 const Product = require("../models/Product");
 const User = require("../models/User");
 
+// Obtenir tous les produits
 exports.getProducts = async (req, res) => {
   try {
     const products = await Product.find();
@@ -11,6 +12,7 @@ exports.getProducts = async (req, res) => {
   }
 };
 
+// Obtenir un produit par son ID
 exports.getProductById = async (req, res) => {
   const id = req.params.id;
   try {
@@ -24,8 +26,7 @@ exports.getProductById = async (req, res) => {
   }
 };
 
-
-
+// Créer un nouveau produit
 exports.createProduct = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -54,6 +55,7 @@ exports.createProduct = async (req, res) => {
   }
 };
 
+// Supprimer un produit par son id
 exports.deleteProduct = async (req, res) => {
   const id = req.params.id;
   try {
@@ -71,6 +73,7 @@ exports.deleteProduct = async (req, res) => {
   }
 };
 
+// Récupérer les produits créés par un utilisateur
 exports.getProductsByUser = async (req, res) => {
   const userId = req.params.userId;
   try {

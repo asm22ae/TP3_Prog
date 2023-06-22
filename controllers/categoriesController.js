@@ -1,15 +1,17 @@
 const { validationResult } = require("express-validator");
 const Category = require("../models/Category");
 
+// Obtenir toutes les catégories
 exports.getCategories = async (req, res) => {
   try {
-    const categories = await Category.find();
+    const categories = await Category.find(); // Recherche de toutes les catégories dans la base de données
     res.status(200).json(categories);
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
 };
 
+// Obtenir une catégorie par son ID
 exports.getCategoryById = async (req, res) => {
   const id = req.params.id;
   try {
@@ -23,6 +25,7 @@ exports.getCategoryById = async (req, res) => {
   }
 };
 
+// Mettre à jour une catégorie
 exports.updateCategory = async (req, res) => {
   const id = req.params.id;
   try {
@@ -43,6 +46,7 @@ category = await Category.findByIdAndUpdate(id,updateData,{new:true});
   }
 };
 
+// Créer une nouvelle catégorie
 exports.createCategory = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -60,6 +64,7 @@ exports.createCategory = async (req, res) => {
   }
 };
 
+// Supprimer une catégorie
 exports.deleteCategory = async (req, res) => {
   const id = req.params.id;
   try {

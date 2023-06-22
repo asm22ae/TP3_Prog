@@ -1,3 +1,4 @@
+// Vérifier si l'utilisateur est un administrateur
 const checkAdmin = (req, res, next) => {
   const isAdmin = req.user.isAdmin;
   if (isAdmin) {

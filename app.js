@@ -1,11 +1,13 @@
 "use strict";
 
+// Importation des modules requis
 const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const app = express();
 
+// Configuration des en-têtes pour autoriser les requêtes
 app.use((req, res, next) => {
    res.setHeader('Access-Control-Allow-Origin', '*');
    res.setHeader(
@@ -16,6 +18,7 @@ app.use((req, res, next) => {
    next();
   });
 
+// Importation des contrôleurs et des routes  
 const errorController = require('./controllers/errorController');
 
 const usersRoutes = require('./routes/usersRoutes');
@@ -25,6 +28,7 @@ const cartRoutes = require('./routes/cartRoutes');
 const authRoutes = require('./routes/authRoutes');
 const searchRoutes = require('./routes/searchRoutes');
 
+// Utilisation des middlewares
 app.use(express.json()); 
 app.use(express.urlencoded({
   extended: false
@@ -39,6 +43,7 @@ app.use(searchRoutes);
 app.use(errorController.logErrors);
 app.use(errorController.get404);
 
+// Connexion à la base de données et démarrage du serveur
 mongoose.connect(process.env.DB_URL)
   .then(() => {
     console.log('La connexion à la base de données est établie')
